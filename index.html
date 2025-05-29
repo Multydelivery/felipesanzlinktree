@@ -19,30 +19,14 @@
             margin: 0;
             padding: 0;
             font-family: 'Roboto', sans-serif;
-            background-color: var(--dark);
             color: var(--light);
-            background-image: 
-                radial-gradient(circle at 20% 30%, rgba(0, 247, 255, 0.1) 0%, transparent 20%),
-                radial-gradient(circle at 80% 70%, rgba(255, 0, 228, 0.1) 0%, transparent 20%),
-                linear-gradient(to bottom, #0a0a20, #000000);
-            min-height: 100vh;
             overflow-x: hidden;
             position: relative;
-        }
-        
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            min-height: 100vh;
             background: 
-                linear-gradient(90deg, var(--dark) 1px, transparent 1px) 0 0 / 20px 20px,
-                linear-gradient(var(--dark) 1px, transparent 1px) 0 0 / 20px 20px;
-            opacity: 0.2;
-            pointer-events: none;
-            z-index: -1;
+                linear-gradient(rgba(10, 10, 32, 0.85), rgba(10, 10, 32, 0.85)),
+                url('public/codefuterepcbg2.jpg') no-repeat center center fixed;
+            background-size: cover;
         }
         
         .container {
@@ -59,8 +43,8 @@
         }
         
         .profile-pic {
-            width: 100px;
-            height: 100px;
+            width: 150px;
+            height: 180px;
             border-radius: 50%;
             object-fit: cover;
             border: 3px solid var(--primary);
@@ -74,8 +58,10 @@
             color: var(--primary);
             text-shadow: 0 0 10px var(--primary);
             margin-bottom: 0.5rem;
-            letter-spacing: 1px;
+            letter-spacing: 10px;
             font-size: 1.8rem;
+            animation: fadeIn 1.5s ease-in-out;
+            text-transform: uppercase;
         }
         
         .bio {
@@ -104,8 +90,8 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             font-size: 0.95rem;
         }
@@ -113,6 +99,7 @@
         .link-button:hover {
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.15);
         }
         
         .link-button::before {
@@ -135,57 +122,48 @@
             font-size: 1.3rem;
         }
         
-        /* Social media specific styles */
-        .instagram {
-            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+        /* Social media icon colors */
+        .instagram .link-icon {
+            color: #E1306C;
         }
         
-        .twitter {
-            background: #1DA1F2;
+        .twitter .link-icon {
+            color: #1DA1F2;
         }
         
-        .youtube {
-            background: #FF0000;
+        .youtube .link-icon {
+            color: #FF0000;
         }
         
-        .linkedin {
-            background: #0077B5;
+        .linkedin .link-icon {
+            color: #0077B5;
         }
         
-        .tiktok {
-            background: #000000;
+        .tiktok .link-icon {
+            color: #000000;
         }
         
-        .github {
-            background: #333333;
+        .github .link-icon {
+            color: #333333;
         }
         
-        .discord {
-            background: #5865F2;
+        .discord .link-icon {
+            color: #5865F2;
         }
         
-        .spotify {
-            background: #1DB954;
+        .spotify .link-icon {
+            color: #1DB954;
         }
         
-        .twitch {
-            background: #9146FF;
+        .twitch .link-icon {
+            color: #9146FF;
         }
         
-        .kick {
-            background: #53fc18;
-            color: #000;
+        .kick .link-icon {
+            color: #53fc18;
         }
         
-        /* Floating particles */
-        .particle {
-            position: absolute;
-            background: var(--primary);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: -1;
-        }
-        
+        /* Floating animation */
         @keyframes float {
             0%, 100% {
                 transform: translateY(0);
@@ -207,8 +185,8 @@
             
             .profile-pic {
                 margin-top: 20px;
-                width: 90px;
-                height: 90px;
+                width: 120px;
+                height: 150px;
             }
             
             h1 {
@@ -221,6 +199,7 @@
             }
             
             .link-button {
+                width: 40%;
                 padding: 0.8rem;
                 font-size: 0.9rem;
             }
@@ -243,6 +222,37 @@
             .link-icon {
                 font-size: 1.1rem;
                 margin-right: 8px;
+            }
+        }
+        
+        /* Landscape orientation adjustments */
+        @media (max-height: 600px) and (orientation: landscape) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .profile-pic {
+                width: 80px;
+                height: 100px;
+                margin: 10px 0;
+            }
+            
+            h1 {
+                font-size: 1.3rem;
+                margin-bottom: 0.3rem;
+            }
+            
+            .bio {
+                font-size: 0.8rem;
+                margin-bottom: 1rem;
+            }
+            
+            .links {
+                gap: 0.6rem;
+            }
+            
+            .link-button {
+                padding: 0.6rem;
             }
         }
     </style>
@@ -307,55 +317,5 @@
             </a>
         </div>
     </div>
-
-    <script>
-        // Create floating particles
-        function createParticles() {
-            const colors = ['#00f7ff', '#ff00e4', '#ffffff'];
-            const count = 15; // Reduced for better mobile performance
-            
-            for (let i = 0; i < count; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-                
-                // Random properties
-                const size = Math.random() * 4 + 1; // Smaller particles for mobile
-                const posX = Math.random() * window.innerWidth;
-                const posY = Math.random() * window.innerHeight;
-                const color = colors[Math.floor(Math.random() * colors.length)];
-                const delay = Math.random() * 5;
-                const duration = 5 + Math.random() * 10;
-                
-                // Apply styles
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                particle.style.left = `${posX}px`;
-                particle.style.top = `${posY}px`;
-                particle.style.background = color;
-                particle.style.opacity = Math.random() * 0.4 + 0.1; // More subtle
-                particle.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
-                
-                document.body.appendChild(particle);
-            }
-        }
-        
-        // Initialize on load
-        window.addEventListener('load', createParticles);
-        
-        // Adjust for mobile devices
-        function adjustForMobile() {
-            if (window.innerWidth <= 480) {
-                // Reduce particle count further on small devices
-                const particles = document.querySelectorAll('.particle');
-                if (particles.length > 10) {
-                    for (let i = 10; i < particles.length; i++) {
-                        particles[i].remove();
-                    }
-                }
-            }
-        }
-        
-        window.addEventListener('resize', adjustForMobile);
-    </script>
 </body>
 </html>
